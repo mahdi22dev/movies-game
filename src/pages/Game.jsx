@@ -167,9 +167,12 @@ const Game = () => {
         setSearch("");
       }}
     >
-      <p>
-        {movieTitle.title && `showing title for test : ${movieTitle.title}`}
-      </p>
+      <div className='test-title'>
+        <p>
+          {movieTitle.title && `showing title for test : ${movieTitle.title}`}
+        </p>
+      </div>
+
       {text}
 
       <div className='score flex'>
@@ -274,6 +277,9 @@ const GameWrraper = styled.main`
       color: green;
       font-size: clamp(17px, 1.3vw, 20px);
     }
+  }
+  .test-title {
+    min-height: 100px;
   }
   @media (max-width: 790px) {
     form {
