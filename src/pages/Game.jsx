@@ -168,9 +168,7 @@ const Game = () => {
       }}
     >
       <div className='test-title'>
-        <p>
-          {movieTitle.title && `showing title for test : ${movieTitle.title}`}
-        </p>
+        <p>{movieTitle.title ?? `showing title for test`}</p>
       </div>
 
       {text}
