@@ -3,6 +3,7 @@ import Score from "./Score";
 import styled from "styled-components";
 import { Gamevariants } from "../variants/variants";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Lose = ({ score, titlesList }) => {
   return (
@@ -20,6 +21,10 @@ const Lose = ({ score, titlesList }) => {
         {titlesList.map((title) => {
           return <Score key={title.key} prop={title} />;
         })}
+
+        <Link className='link flex' to={"/game"}>
+          Play Again
+        </Link>
       </LoseStyled>
     </>
   );
