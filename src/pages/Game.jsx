@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getRandomNumber, options, text } from "../utils/utils";
+import {
+  capitalizeFirst,
+  getRandomNumber,
+  options,
+  text,
+} from "../utils/utils";
 import { lifes } from "../data";
 import { useQuery } from "react-query";
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,7 +34,9 @@ const Game = () => {
     500
   )}&region=US`;
   const keysUrl = `https://api.themoviedb.org/3/movie/${movieTitle?.id}/keywords`;
-  const urlKeys = `https://api.themoviedb.org/3/search/movie?query=${value}&include_adult=false&language=en-US&page=1`;
+  const urlKeys = `https://api.themoviedb.org/3/search/movie?query=${capitalizeFirst(
+    value
+  )}&include_adult=false&language=en-US&page=1`;
 
   // fetch random movie
   const fetchRandomMovie = async () => {
@@ -99,9 +106,11 @@ const Game = () => {
     }
   }, [lifesState]);
 
-  // Handle logic
+  // Handle logicconst capitalizedValue = words
+
   const handleGusses = () => {
-    if (value == movieTitle.title) {
+    console.log(capitalizeFirst(value));
+    if (capitalizeFirst(value) == movieTitle.title) {
       const title = [
         ...titlesList,
         { id: movieTitle.id, title: movieTitle.title, color: "green" },
@@ -212,7 +221,7 @@ const Game = () => {
             {keywords.map((keys) => {
               return (
                 <>
-                  <Keyword key={keys} keys={keys} />
+                  <Keyword key={keys.id} keys={keys} />
                 </>
               );
             })}
