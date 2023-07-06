@@ -31,9 +31,10 @@ const Lose = ({ score, titlesList }) => {
 };
 
 const LoseStyled = styled.main`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   flex-direction: column;
+  padding: 50px;
 
   h2 {
     font-size: clamp(40px, 5vw, 60px);

@@ -7,7 +7,7 @@ import {
 } from "../utils/utils";
 import { lifes } from "../data";
 import { useQuery } from "react-query";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import Loading from "../component/Loading";
 import SumbitForm from "../component/SumbitForm";
@@ -109,7 +109,6 @@ const Game = () => {
   // Handle logicconst capitalizedValue = words
 
   const handleGusses = () => {
-    console.log(capitalizeFirst(value));
     if (capitalizeFirst(value) == movieTitle.title) {
       const title = [
         ...titlesList,
@@ -157,11 +156,12 @@ const Game = () => {
   if (isLose) {
     return (
       <>
-        <AnimatePresence>
-          <Lose titlesList={titlesList} score={score} />
-        </AnimatePresence>
+        <Lose titlesList={titlesList} score={score} />
       </>
     );
+  }
+  if (isLoading) {
+    return <Loading />;
   }
   // Game UI
   return (
@@ -177,7 +177,7 @@ const Game = () => {
       }}
     >
       <div className='test-title'>
-        <p>{movieTitle.title ?? `showing title for test`}</p>
+        <p>{movieTitle ? `${movieTitle.title}` : "title"}</p>
       </div>
 
       {text}
@@ -197,8 +197,6 @@ const Game = () => {
           })}
         </div>
       </div>
-
-      {isLoading && <Loading />}
 
       {keywords && (
         <>
