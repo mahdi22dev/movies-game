@@ -31,7 +31,7 @@ const Game = () => {
 
   // urls
   const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${getRandomNumber(
-    200
+    500
   )}&region=US`;
   const keysUrl = `https://api.themoviedb.org/3/movie/${movieTitle?.id}/keywords`;
   const urlKeys = `https://api.themoviedb.org/3/search/movie?query=${capitalizeFirst(
