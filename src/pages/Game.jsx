@@ -96,9 +96,7 @@ const Game = () => {
 
   // useEffect
   useEffect(() => {
-    if (value) {
-      refetch();
-    }
+    refetch();
   }, [value]);
   useEffect(() => {
     if (lifesState == 0) {
@@ -106,10 +104,11 @@ const Game = () => {
     }
   }, [lifesState]);
 
-  // Handle logicconst capitalizedValue = words
+  // Handle the game logic
 
   const handleGusses = () => {
     if (capitalizeFirst(value) == movieTitle.title) {
+      setScore(score + 1);
       const title = [
         ...titlesList,
         { id: movieTitle.id, title: movieTitle.title, color: "green" },
@@ -118,8 +117,8 @@ const Game = () => {
       fetchRandom();
       setSearch("");
       setValue("");
-      setScore(score + 1);
     } else {
+      setScore(score - 1);
       const title = [
         ...titlesList,
         { id: movieTitle.id, title: movieTitle.title, color: "red" },
@@ -129,7 +128,7 @@ const Game = () => {
       setLifeState(updatedLifesState);
       setSearch("");
       setValue("");
-      setScore(score - 1);
+
       if (score == 0) {
         setScore(0);
       }
@@ -209,11 +208,7 @@ const Game = () => {
             setSearch={setSearch}
           />
           <div className='release_date'>
-            <p>
-              {movieTitle.release_date
-                ? `release date : ${movieTitle.release_date}`
-                : "release date... "}
-            </p>
+            <p>{movieTitle && `release date : ${movieTitle.release_date}`}</p>
           </div>
           <ul>
             {keywords.map((keys) => {
