@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import {
   capitalizeFirst,
   getRandomNumber,
@@ -9,13 +9,14 @@ import { lifes } from "../data";
 import { useQuery } from "react-query";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import Loading from "../component/Loading";
 import SumbitForm from "../component/SumbitForm";
 import { Gamevariants } from "../variants/variants";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import Keyword from "../component/Keyword";
-import Lose from "../component/Lose";
+
+const Lose = lazy(() => import("../component/Lose"));
+const Loading = lazy(() => import("../component/Loading"));
 
 const Game = () => {
   const [movieTitle, setMovieTitle] = useState("");
@@ -155,12 +156,30 @@ const Game = () => {
   if (isLose) {
     return (
       <>
-        <Lose titlesList={titlesList} score={score} />
+        <Suspense
+          fallback={
+            <>
+              <div>...Loading</div>
+            </>
+          }
+        >
+          <Lose titlesList={titlesList} score={score} />
+        </Suspense>
       </>
     );
   }
   if (isLoading) {
-    return <Loading />;
+    return (
+      <Suspense
+        fallback={
+          <>
+            <div>...Loading</div>
+          </>
+        }
+      >
+        <Loading />
+      </Suspense>
+    );
   }
   // Game UI
   return (
