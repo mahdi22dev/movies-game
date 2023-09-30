@@ -17,7 +17,7 @@ const SumbitForm = ({
     e.preventDefault();
   };
   return (
-    <FoemWrraper className='flex' onSubmit={handleSubmit}>
+    <FormWrapper className='flex' onSubmit={handleSubmit}>
       <div className=''>
         <Input input={inputs} setValue={setValue} value={value} />
         <ul>
@@ -44,10 +44,10 @@ const SumbitForm = ({
         </StyledButton>
         <StyledButton onClick={handleSkip} text={"Skip"}></StyledButton>
       </div>
-    </FoemWrraper>
+    </FormWrapper>
   );
 };
-const FoemWrraper = styled.form`
+const FormWrapper = styled.form`
   input {
     min-width: 100%;
     width: min(60%, 350px);
